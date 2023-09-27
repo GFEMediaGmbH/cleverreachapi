@@ -18,7 +18,6 @@ class Apiconnector
         $this->user = $user;
         $this->pass = $pass;
         $this->tokenObject = $tokenObject;
-
     }
 
     /*
@@ -35,7 +34,6 @@ class Apiconnector
             $result = curl_exec($curl);
             $res_obj = json_decode($result);
             if (isset($res_obj->access_token)) {
-
                 $this->tokenObject = $res_obj;
                 $this->token = $res_obj->access_token;
                 $res_obj->token_invalid_stamp = time() + $res_obj->expires_in;
@@ -82,7 +80,6 @@ class Apiconnector
     {
 
         if ($this->getTokenObject()) {
-
             $new_user = array(
                 "email" => $email,
                 "registered" => time(),  //current date
