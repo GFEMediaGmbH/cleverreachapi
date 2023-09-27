@@ -4,6 +4,8 @@ generic php class for interacting with cleverreach
 
 ## Main Usage
 
+    composer require gfe/cleverreachapi
+
 in your implementation
 
     use Gfe\Cleverreachapi\Apiconnector;
