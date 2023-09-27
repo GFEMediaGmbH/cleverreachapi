@@ -1,6 +1,6 @@
 {
   "name": "gfe/cleverreachapi",
-  "description": "CleverReach api abstraction for simple newsletter subscribe"
+  "description": "CleverReach api abstraction for simple newsletter subscribe",
   "authors": [
     {
       "name": "Frithjof Pfannstiel"
