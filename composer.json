@@ -1,14 +1,17 @@
 {
-  "name": "gfe/cleverreachapi",
-  "description": "CleverReach api abstraction for simple newsletter subscribe",
-  "authors": [
-    {
-      "name": "Frithjof Pfannstiel"
+    "name": "gfe/cleverreachapi",
+    "description": "CleverReach api abstraction for simple newsletter subscribe",
+    "authors": [
+        {
+            "name": "Frithjof Pfannstiel"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gfe\\Cleverreachapi\\": "src/"
+        }
+    },
+    "require": {
+        "ext-curl": "*"
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Gfe\\Cleverreachapi\\": "src/"
-    }
-  }
 }
