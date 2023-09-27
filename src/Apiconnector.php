@@ -24,7 +24,7 @@ class Apiconnector
      * returns the current access token for storage and if none is there get a new one
      */
     public function getTokenObject(){
-        if(!$this->tokenObject){
+        if(!$this->tokenObject || $this->tokenObject->token_invalid_stamp < time()){
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $this->URL_TOKEN);
             curl_setopt($curl, CURLOPT_USERPWD, $this->user . ':' . $this->pass);
@@ -42,6 +42,9 @@ class Apiconnector
                 //this can be stored somewhere to not run auth on every call
                 return $res_obj;
             }
+            else{
+                throw new \Exception('error in retrieving access token');
+            }
         }
         else{
             // recreate token settings
@@ -54,6 +57,23 @@ class Apiconnector
         return null;
     }
 
+    /*
+     * sets the token Object // recreates token if it is no more valid
+     */
+    public function setTokenObject($tokenObject){
+        if($tokenObject->token_invalid_stamp < time()){
+            //token has expired;
+            $this->getTokenObject();
+        }
+        else{
+            $this->tokenObject = $tokenObject;
+        }
+
+        $this->token = $this->tokenObject->access_token;
+        $this->token_invalid_stamp = $this->tokenObject->token_invalid_stamp;
+        $this->token_lifetime = $this->tokenObject->expires_in;
+        return $this->tokenObject;
+    }
     /*
      * subscribes the user to the list id
      */
